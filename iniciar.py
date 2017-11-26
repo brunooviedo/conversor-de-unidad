@@ -1,5 +1,5 @@
 import sys
-from PyQt5 import QtWidgets, uic, QtCore
+from PyQt5 import QtWidgets, uic, QtGui
 
 # Cargar archivo .ui
 form_class = uic.loadUiType("conversor.ui")[0]
@@ -11,10 +11,17 @@ class MyForm(QtWidgets.QMainWindow, form_class):
         self.setupUi(self)
         self.btn_clean.clicked.connect(self.clear)
         self.btn_exit.clicked.connect(self.close)
+        self.btn_calc.clicked.connect(self.calc)
+
+        # hacer conversion de metros x segundo a kilometros x hora.
+
+    def calc(self):
+        conversion = float(self.valor1.text()) * 3.6
+        self.valor2.setText(str(conversion))
 
     def clear(self):
-        self.valor_1.clear()
-        self.valor_2.clear()
+        self.valor1.clear()
+        self.valor2.clear()
 
     def exit(self):
         self.btn_exit.exit()
